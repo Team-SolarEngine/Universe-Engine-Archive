@@ -51,6 +51,11 @@ coolest thing there is in this engine.
 * [OFFICIAL Universe Engine Discord Server](https://discord.gg/RaHmP5fgyA) -> https://discord.gg/RaHmP5fgyA
 * [Official Launcher](https://github.com/VideoBotYT/Universe-Engine-Launhcer) -> https://github.com/VideoBotYT/Universe-Engine-Launhcer
 
+> [!IMPORTANT]
+> we're still alive, lmao <br>
+> we're just working on a whole ass rework <br>
+> join the discord server to see sneek peeks :eyes:
+
 <details>
   <summary><h2>Psych engine credits and other stuff</h2></summary>
 
