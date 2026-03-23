@@ -38,9 +38,6 @@ import flixel.util.FlxTimer;
 import lime.app.Application;
 import openfl.Assets;
 import flixel.util.FlxAxes;
-#if VIDEOS_ALLOWED
-import vlc.MP4Handler;
-#end
 import flixel.addons.display.FlxBackdrop;
 
 using StringTools;
@@ -194,23 +191,20 @@ class TitleState extends MusicBeatState
 		}
 
 		FlxG.mouse.visible = false;
-		#if FREEPLAY
-		MusicBeatState.switchState(new FreeplayState());
-		#elseif CHARTING
-		MusicBeatState.switchState(new ChartingState());
-		#else
 		if (FlxG.save.data.flashing == null && !FlashingState.leftState)
 		{
 			FlxTransitionableState.skipNextTransIn = true;
 			FlxTransitionableState.skipNextTransOut = true;
 			MusicBeatState.switchState(new FlashingState());
 		}
+		#if PROMPT_LAUNCHER // currently archived.
 		else if (FlxG.save.data.officialLauncher == null && !OfficialLauncherState.leftState) //Thing Remove popup officlal launcher
 		{
 			FlxTransitionableState.skipNextTransIn = true;
 			FlxTransitionableState.skipNextTransOut = true;
 			MusicBeatState.switchState(new OfficialLauncherState()); // comment this line if you wanna remove the officiallauncherstate!
 		}
+		#end
 		else
 		{
 			#if desktop
@@ -234,7 +228,6 @@ class TitleState extends MusicBeatState
 				});
 			}
 		}
-		#end
 	}
 
 	var logoBl:FlxSprite;
@@ -880,7 +873,7 @@ class TitleState extends MusicBeatState
 				switch (sickBeats)
 				{
 					case 1:
-						#if !html5
+						#if VIDEOS_ALLOWED
 						var video:MP4Handler = new MP4Handler();
 						video.playVideo("assets/videos/AACIntroUE.mp4");
 						#end

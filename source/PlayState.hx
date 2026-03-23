@@ -73,9 +73,6 @@ import openfl.filters.ShaderFilter;
 import sys.FileSystem;
 import sys.io.File;
 #end
-#if VIDEOS_ALLOWED
-import vlc.MP4Handler;
-#end
 
 using StringTools;
 
