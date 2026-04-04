@@ -54,6 +54,8 @@
 	<define name="SILLY_OPTIONS" /> <!-- Allows certain settings to be enabled. -->
 	<!-- <define name="PROMPT_LAUNCHER" /> --> <!-- Launcher is archived! -->
 
+	<haxelib name="hxWindowColorMode"/>
+
 	<define name="PSYCH" />
 	<define name="PSYCHVERSION" value="0.6.3"/>
 

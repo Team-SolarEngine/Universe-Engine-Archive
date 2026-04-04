@@ -75,6 +75,8 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 
+import hxwindowmode.WindowColorMode;
+
 using StringTools;
 
 class PlayState extends MusicBeatState
@@ -4417,6 +4419,8 @@ class PlayState extends MusicBeatState
 			}
 		}
 		#end
+
+		WindowColorMode.setWindowBorderColor(ClientPrefs.windowColor);
 
 		var ret:Dynamic = callOnLuas('onEndSong', [], false);
 		if (ret != FunkinLua.Function_Stop && !transitioning)
