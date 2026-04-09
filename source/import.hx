@@ -3,8 +3,10 @@ import Paths;
 #if VIDEOS_ALLOWED 
 	#if (hxCodec <= "2.5.1") // hxcodec fix *yay sound effect*
 	import vlc.MP4Handler;
-	#else
+	#elseif (hxCodec <= "2.6.1")
 	import hxcodec.VideoHandler as MP4Handler;
+	#else
+	import hxcodec.FlxVideo as MP4Handler;
 	#end
 #end
 import flixel.FlxSprite;

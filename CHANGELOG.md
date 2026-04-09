@@ -7,6 +7,8 @@
 - Fixed the result screen accidentally making a camera that becomes the default draw target.
 - Fixed the result screen occasionally failing to end the song.
 - Fixed the HXCPP version used when compiling the windows build.
+- Fixed note RGB not being disabled on RGB Shader being disabled in the song
+- Added 2 checkboxes to the chart editor to disable note RGB or note splashes.
 
 # [Solar Engine 0.6.0](https://github.com/Team-SolarEngine/Universe-Engine-Archive/releases/tag/0.6.0)
 

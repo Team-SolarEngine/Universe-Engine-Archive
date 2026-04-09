@@ -501,6 +501,25 @@ class ChartingState extends MusicBeatState
 			// trace('CHECKED!');
 		};
 
+		var check_rgbEnable = new FlxUICheckBox(10, 45, null, null, "Disable Note RGB", 100);
+		check_rgbEnable.checked = _song.disableNoteRGB;
+		// _song.needsVoices = check_voices.checked;
+		check_rgbEnable.callback = function()
+		{
+			_song.disableNoteRGB = check_rgbEnable.checked;
+			updateGrid();
+			// trace('CHECKED!');
+		};
+
+		var check_splashEnable = new FlxUICheckBox(110, 80, null, null, "Disable Note Splashes", 100);
+		check_splashEnable.checked = _song.disableSplashes;
+		// _song.needsVoices = check_voices.checked;
+		check_splashEnable.callback = function()
+		{
+			_song.disableSplashes = check_splashEnable.checked;
+			// trace('CHECKED!');
+		};
+
 		var saveButton:FlxButton = new FlxButton(110, 8, "Save", function()
 		{
 			saveLevel();
@@ -570,7 +589,7 @@ class ChartingState extends MusicBeatState
 		clear_notes.color = FlxColor.RED;
 		clear_notes.label.color = FlxColor.WHITE;
 
-		var stepperBPM:FlxUINumericStepper = new FlxUINumericStepper(10, 70, 1, 1, 1, 400, 3);
+		var stepperBPM:FlxUINumericStepper = new FlxUINumericStepper(10, 80, 1, 1, 1, 400, 3);
 		stepperBPM.value = Conductor.bpm;
 		stepperBPM.name = 'song_bpm';
 		blockPressWhileTypingOnStepper.push(stepperBPM);
@@ -726,6 +745,8 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(UI_songTitle);
 
 		tab_group_song.add(check_voices);
+		tab_group_song.add(check_rgbEnable);
+		tab_group_song.add(check_splashEnable);
 		tab_group_song.add(clear_events);
 		tab_group_song.add(clear_notes);
 		tab_group_song.add(saveButton);
@@ -740,7 +761,6 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(noteSkinInputText);
 		tab_group_song.add(noteSplashesInputText);
 		tab_group_song.add(new FlxText(stepperBPM.x, stepperBPM.y - 15, 0, 'Song BPM:'));
-		tab_group_song.add(new FlxText(stepperBPM.x + 100, stepperBPM.y - 15, 0, 'Song Offset:'));
 		tab_group_song.add(new FlxText(stepperSpeed.x, stepperSpeed.y - 15, 0, 'Song Speed:'));
 		tab_group_song.add(new FlxText(player2DropDown.x, player2DropDown.y - 15, 0, 'Opponent:'));
 		tab_group_song.add(new FlxText(gfVersionDropDown.x, gfVersionDropDown.y - 15, 0, 'Girlfriend:'));

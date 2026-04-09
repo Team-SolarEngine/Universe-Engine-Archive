@@ -71,7 +71,6 @@ class Note extends FlxSkewedSprite
 	public var eventVal1:String = '';
 	public var eventVal2:String = '';
 
-	public var colorSwap:ColorSwap;
 	public var inEditor:Bool = false;
 
 	public var animSuffix:String = '';
@@ -192,12 +191,6 @@ class Note extends FlxSkewedSprite
 		noteSplashData.texture = PlayState.SONG != null ? PlayState.SONG.splashSkin : 'noteSplashes';
 		
 		noteSplashTexture = PlayState.SONG.splashSkin;
-		if (noteData > -1 && noteData < ClientPrefs.arrowHSV.length)
-		{
-			colorSwap.hue = ClientPrefs.arrowHSV[noteData][0] / 360;
-			colorSwap.saturation = ClientPrefs.arrowHSV[noteData][1] / 100;
-			colorSwap.brightness = ClientPrefs.arrowHSV[noteData][2] / 100;
-		}
 
 		if (noteData > -1 && noteType != value)
 		{
@@ -207,9 +200,7 @@ class Note extends FlxSkewedSprite
 					ignoreNote = mustPress;
 					reloadNote('HURT');
 					noteSplashTexture = 'HURTnoteSplashes';
-					colorSwap.hue = 0;
-					colorSwap.saturation = 0;
-					colorSwap.brightness = 0;
+					rgbShader.enabled = false;
 					lowPriority = true;
 
 					if (isSustainNote)
@@ -231,9 +222,6 @@ class Note extends FlxSkewedSprite
 			}
 			noteType = value;
 		}
-		noteSplashHue = colorSwap.hue;
-		noteSplashSat = colorSwap.saturation;
-		noteSplashBrt = colorSwap.brightness;
 		return value;
 	}
 
@@ -329,8 +317,6 @@ class Note extends FlxSkewedSprite
 		if (noteData > -1)
 		{
 			texture = '';
-			colorSwap = new ColorSwap();
-			shader = colorSwap.shader;
 
 			x += swagWidth * (noteData);
 			if (!isSustainNote && noteData > -1 && noteData < 4)
@@ -348,8 +334,6 @@ class Note extends FlxSkewedSprite
 				catch (e)
 				{
 				};
-				if (PlayState.SONG != null && PlayState.SONG.disableNoteRGB)
-					rgbShader.enabled = useRGBShader = false;
 			}
 			else
 				useRGBShader = false;
@@ -410,6 +394,8 @@ class Note extends FlxSkewedSprite
 			earlyHitMult = 1;
 		}
 		x += offsetX;
+		if (PlayState.SONG != null && PlayState.SONG.disableNoteRGB)
+			rgbShader.enabled = useRGBShader = false;
 	}
 
 	var lastNoteOffsetXForPixelAutoAdjusting:Float = 0;

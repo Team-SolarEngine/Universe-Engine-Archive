@@ -1169,7 +1169,7 @@ class PlayState extends MusicBeatState
 			playfieldRenderer.cameras = [camHUD];
 			add(playfieldRenderer);
 		}
-		add(grpNoteSplashes);
+		if (!SONG.disableSplashes && ClientPrefs.noteSplashes) add(grpNoteSplashes);
 
 		camFollow = new FlxPoint();
 		camFollowPos = new FlxObject(0, 0, 1, 1);
@@ -5332,7 +5332,7 @@ class PlayState extends MusicBeatState
 
 	public function spawnNoteSplashOnNote(note:Note)
 	{
-		if (ClientPrefs.noteSplashes && note != null)
+		if (ClientPrefs.noteSplashes && !SONG.disableSplashes && note != null)
 			{
 				var strum:StrumNote = playerStrums.members[note.noteData];
 				if (strum != null)
